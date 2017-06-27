@@ -2,7 +2,7 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <contextName>home-nh-impl</contextName>
     <!--<property name="LOG_HOME" value="/usr/local/home-nh-impl/provider/logs"/>-->
-    <property name="LOG_HOME" value="D:/DevelopLogs/funtoys_service_log"/>
+    <property name="LOG_HOME" value="D:/DevelopLogs/funtoys_web_log"/>
     <!--<property name="LOG_HOME" value="${catalina.home}/logs"/>  -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <Encoding>UTF-8</Encoding>
@@ -16,7 +16,7 @@
         <Encoding>UTF-8</Encoding>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
-            <FileNamePattern>${LOG_HOME}/funtoys-service.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/funtoys-web.%d{yyyy-MM-dd}.log</FileNamePattern>
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -29,10 +29,6 @@
             <MaxFileSize>10MB</MaxFileSize>
         </triggeringPolicy>
     </appender>
-
-    <logger name="com.funtoys.service.dao" level="DEBUG" addtivity="false">
-        <appender-ref ref="STDOUT"/>
-    </logger>
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
