@@ -9,7 +9,6 @@ import java.io.Serializable;
  * Created by hejun on 2017/6/26.
  */
 @Data
-@ToString
 public class Paging implements Serializable {
 
     private static final long serialVersionUID = -1787041981473221753L;
