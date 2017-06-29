@@ -11,6 +11,8 @@
     <dubbo:registry protocol="zookeeper" address="localhost:2181" client="zkclient"/>
 
     <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="com.funtoys.service.inter.AccountInfoService" ref="accountInfoService" retries="0" timeout="10000"/>
 
     <!-- 和本地bean一样实现服务 -->
+    <bean id="accountInfoService" class="com.funtoys.service.impl.AccountInfoServiceImpl" />
 </beans>

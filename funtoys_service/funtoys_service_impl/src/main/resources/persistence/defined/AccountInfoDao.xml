@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.funtoys.service.dao.defined.AccountInfoDao">
+    <resultMap id="BaseResultMap" type="com.funtoys.service.domain.generation.AccountInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP"/>
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP"/>
+        <result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="modified_by" property="modifiedBy" jdbcType="VARCHAR"/>
+        <result column="is_del" property="isDel" jdbcType="INTEGER"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="account_type" property="accountType" jdbcType="INTEGER"/>
+        <result column="random_code" property="randomCode" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, gmt_created, gmt_modified, created_by, modified_by, is_del, account, password, 
+    account_type, random_code
+  </sql>
+    <select id="selectPageByCondition" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from account_info
+        <where>
+            <if test="record.isDel != null">
+                and is_del = #{record.isDel}
+            </if>
+            <if test="record.id != null">
+                and id = #{record.id}
+            </if>
+            <if test="record.account != null">
+                and account = #{record.account}
+            </if>
+            <if test="record.password != null">
+                and password = #{record.password}
+            </if>
+            <if test="record.accountType != null">
+                and account_type = #{record.accountType}
+            </if>
+            <if test="record.randomCode != null">
+                and random_code = #{record.randomCode}
+            </if>
+            <if test="record.hql != null">
+                and <![CDATA[${record.hql}]]>
+            </if>
+        </where>
+        ORDER BY gmt_created DESC
+        <if test="paging != null and paging.start != null and paging.pageSize != null">
+            limit ${paging.start}, ${paging.pageSize}
+        </if>
+    </select>
+
+    <select id="selectPageByConditionNoOrderBy" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from account_info
+        <where>
+            <if test="record.isDel != null">
+                and is_del = #{record.isDel}
+            </if>
+            <if test="record.id != null">
+                and id = #{record.id}
+            </if>
+            <if test="record.account != null">
+                and account = #{record.account}
+            </if>
+            <if test="record.password != null">
+                and password = #{record.password}
+            </if>
+            <if test="record.accountType != null">
+                and account_type = #{record.accountType}
+            </if>
+            <if test="record.randomCode != null">
+                and random_code = #{record.randomCode}
+            </if>
+            <if test="record.hql != null">
+                and <![CDATA[${record.hql}]]>
+            </if>
+        </where>
+        <if test="paging != null and paging.start != null and paging.pageSize != null">
+            limit ${paging.start}, ${paging.pageSize}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) from account_info
+        <where>
+            <if test="record.isDel != null">
+                and is_del = #{record.isDel}
+            </if>
+            <if test="record.id != null">
+                and id = #{record.id}
+            </if>
+            <if test="record.account != null">
+                and account = #{record.account}
+            </if>
+            <if test="record.password != null">
+                and password = #{record.password}
+            </if>
+            <if test="record.accountType != null">
+                and account_type = #{record.accountType}
+            </if>
+            <if test="record.randomCode != null">
+                and random_code = #{record.randomCode}
+            </if>
+            <if test="record.hql != null">
+                and <![CDATA[${record.hql}]]>
+            </if>
+        </where>
+    </select>
+
+    <update id="updateByConditionSelective" parameterType="java.util.Map">
+        update account_info
+        <set>
+            <trim suffixOverrides=",">
+                <if test="record.gmtCreated != null">
+                    gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+                </if>
+                <if test="record.gmtModified != null">
+                    gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+                </if>
+                <if test="record.createdBy != null">
+                    created_by = #{record.createdBy,jdbcType=VARCHAR},
+                </if>
+                <if test="record.modifiedBy != null">
+                    modified_by = #{record.modifiedBy,jdbcType=VARCHAR},
+                </if>
+                <if test="record.isDel != null">
+                    is_del = #{record.isDel,jdbcType=INTEGER},
+                </if>
+                <if test="record.account != null">
+                    account = #{record.account,jdbcType=VARCHAR},
+                </if>
+                <if test="record.password != null">
+                    password = #{record.password,jdbcType=VARCHAR},
+                </if>
+                <if test="record.accountType != null">
+                    account_type = #{record.accountType,jdbcType=INTEGER},
+                </if>
+                <if test="record.randomCode != null">
+                    random_code = #{record.randomCode,jdbcType=VARCHAR},
+                </if>
+            </trim>
+        </set>
+        <if test="example != null">
+            <where>
+                <if test="example.id != null">
+                    and id = #{example.id}
+                </if>
+                <if test="example.isDel != null">
+                    and is_del = #{example.isDel}
+                </if>
+                <if test="example.account != null">
+                    and account = #{example.account}
+                </if>
+                <if test="example.password != null">
+                    and password = #{example.password}
+                </if>
+                <if test="example.accountType != null">
+                    and account_type = #{example.accountType}
+                </if>
+                <if test="example.randomCode != null">
+                    and random_code = #{example.randomCode}
+                </if>
+            </where>
+        </if>
+    </update>
+</mapper>

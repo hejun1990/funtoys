@@ -11,4 +11,5 @@
     <dubbo:registry protocol="zookeeper" address="localhost:2181" />
 
     <!-- 生成远程服务代理，可以和本地bean一样使用 -->
+    <dubbo:reference id="accountInfoService" interface="com.funtoys.service.inter.AccountInfoService" />
 </beans>
