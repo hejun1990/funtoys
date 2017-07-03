@@ -1,6 +1,8 @@
 package com.funtoys.backend.interceptor;
 
 import com.funtoys.service.domain.generation.AccountInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,11 +16,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class BaseInterceptor extends HandlerInterceptorAdapter {
 
+    private static Logger logger = LoggerFactory.getLogger(BaseInterceptor.class);
+
     @Value("${project_name}")
     private String projectName;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        logger.info("拦截路径：{}", request.getRequestURI());
         AccountInfo accountInfo = (AccountInfo) request.getSession().getAttribute("accountInfo");
         if (accountInfo == null) {
             response.sendRedirect("/login/page");
