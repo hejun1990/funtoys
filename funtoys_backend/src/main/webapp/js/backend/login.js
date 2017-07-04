@@ -1,4 +1,4 @@
-var base = "backend";
+var base_url = "http://localhost:8080/funtoysbackend";
 
 function login() {
     var account = $("#account").val();
@@ -12,12 +12,20 @@ function login() {
         return false;
     }
     var encrypt_pwd = b64_md5(password);
-    $.post(base + "/login/check", {account: account, password: encrypt_pwd}, function (result) {
-        if(result != null) {
-            if(result.msg == "success") {
-                window.location.href = base + "/main/index";
+    $.post(base_url + "/login/checklogin", {
+        account: account,
+        password: encrypt_pwd,
+        accountType: 2 // 商家
+    }, function (result) {
+        if (result != null) {
+            result = $.parseJSON(result);
+            if (result.msg == "success") {
+                window.location.href = base_url + "/main/index";
+            } else {
+                alert(result.error_info);
             }
+        } else {
+            alert("系统异常！");
         }
     });
-
 }

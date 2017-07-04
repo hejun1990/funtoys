@@ -1,6 +1,5 @@
 package com.funtoys.backend.interceptor;
 
-import com.funtoys.service.domain.generation.AccountInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,29 +17,20 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
 
     private static Logger logger = LoggerFactory.getLogger(BaseInterceptor.class);
 
-    @Value("${project_name}")
-    private String projectName;
-
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("拦截路径：{}", request.getRequestURI());
-        AccountInfo accountInfo = (AccountInfo) request.getSession().getAttribute("accountInfo");
-        if (accountInfo == null) {
-            response.sendRedirect("/login/page");
-            return false;
-        }
-        return true;
-    }
+    @Value("${project_url}")
+    private String projectUrl;
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        ModelMap modelMap = modelAndView.getModelMap();
-        modelMap.put("base_url", projectName);
-        super.postHandle(request, response, handler, modelAndView);
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        super.afterCompletion(request, response, handler, ex);
+        if (request.getHeader("x-requested-with") != null && request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {
+            // 不拦截ajax请求
+            super.postHandle(request, response, handler, modelAndView);
+        } else {
+            logger.info("BaseInterceptor-->postHandle：{}", request.getRequestURI());
+            if (modelAndView != null) {
+                ModelMap modelMap = modelAndView.getModelMap();
+                modelMap.put("base_url", projectUrl);
+            }
+        }
     }
 }
