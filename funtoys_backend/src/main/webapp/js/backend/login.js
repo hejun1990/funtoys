@@ -3,12 +3,12 @@ var base_url = "http://localhost:8080/funtoysbackend";
 function login() {
     var account = $("#account").val();
     if (account == null || account.length == 0) {
-        alert("请输入用户名！");
+        layer.msg("请输入用户名！", {icon: 0});
         return false;
     }
     var password = $("#password").val();
     if (password == null || password.length == 0) {
-        alert("请输入密码！");
+        layer.msg("请输入密码！", {icon: 0});
         return false;
     }
     var encrypt_pwd = b64_md5(password);
@@ -25,7 +25,7 @@ function login() {
                 alert(result.error_info);
             }
         } else {
-            alert("系统异常！");
+            layer.msg("系统异常！", {icon: 5});
         }
     });
 }

@@ -59,6 +59,7 @@
 </div>
 
 <script src="$!base_url/js/jquery/jquery-3.2.0.min.js"></script>
+<script src="$!base_url/layer/layer.js"></script>
 <script src="$!base_url/js/md5.js"></script>
 <script src="$!base_url/js/backend/login.js"></script>
 </body>

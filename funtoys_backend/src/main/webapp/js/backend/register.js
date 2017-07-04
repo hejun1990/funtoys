@@ -3,21 +3,19 @@ var base_url = "http://localhost:8080/funtoysbackend";
 function register() {
     var account = $("#account").val();
     if (account == null || account.length == 0) {
-        alert("请输入用户名！");
+        layer.msg("请输入用户名！", {icon: 0});
         return false;
     }
     var password = $("#password").val();
     if (password == null || password.length == 0) {
-        alert("请输入密码！");
+        layer.msg("请输入密码！", {icon: 0});
         return false;
     }
 
     if (password.length < 6) {
-        alert("密码长度不能小于6位！");
+        layer.msg("密码长度不能小于6位！", {icon: 0});
         return false;
     }
-
-
 
     var checkAccount = true; // 账号是否可以注册
     var system_error = false;
@@ -39,12 +37,12 @@ function register() {
     $.ajaxSettings.async = true; // 设置ajax异步
 
     if (system_error) {
-        alert("系统异常！");
+        layer.msg("系统异常！", {icon: 5});
         return false;
     }
 
     if (!checkAccount) {
-        alert("账号已被注册！");
+        layer.msg("账号已被注册！", {icon: 5});
         return false;
     }
 
@@ -57,13 +55,13 @@ function register() {
         if (result != null) {
             result = $.parseJSON(result);
             if (result.msg == "success") {
-                alert("注册成功！");
+                layer.msg("注册成功！", {icon: 6});
                 window.location.href = base_url + "/login/page";
             } else {
-                alert("注册失败！");
+                layer.msg("注册失败！", {icon: 5});
             }
         } else {
-            alert("系统异常！");
+            layer.msg("系统异常！", {icon: 5});
         }
     });
 }
