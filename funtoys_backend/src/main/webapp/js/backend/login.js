@@ -22,7 +22,7 @@ function login() {
             if (result.msg == "success") {
                 window.location.href = base_url + "/main/index";
             } else {
-                alert(result.error_info);
+                layer.msg(result.error_info, {icon: 5});
             }
         } else {
             layer.msg("系统异常！", {icon: 5});
