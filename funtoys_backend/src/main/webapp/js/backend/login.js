@@ -1,14 +1,16 @@
-var base_url = "http://localhost:8080/funtoysbackend";
-
 function login() {
     var account = $("#account").val();
     if (account == null || account.length == 0) {
-        layer.msg("请输入用户名！", {icon: 0});
+        layer.tips("请输入用户名！", "#account", {
+            tips: [2, '#FF3300']
+        });
         return false;
     }
     var password = $("#password").val();
     if (password == null || password.length == 0) {
-        layer.msg("请输入密码！", {icon: 0});
+        layer.tips("请输入密码！", "#password", {
+            tips: [2, '#FF3300']
+        });
         return false;
     }
     var encrypt_pwd = b64_md5(password);

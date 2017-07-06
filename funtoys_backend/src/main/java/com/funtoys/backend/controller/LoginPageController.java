@@ -168,4 +168,14 @@ public class LoginPageController {
         return MD5.Encoder(new_pwd.toString());
     }
 
+    /**
+     * 退出登录
+     */
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("accountInfo");
+        return "backend/login";
+    }
+
 }

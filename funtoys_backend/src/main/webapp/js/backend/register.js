@@ -1,19 +1,23 @@
-var base_url = "http://localhost:8080/funtoysbackend";
-
 function register() {
     var account = $("#account").val();
     if (account == null || account.length == 0) {
-        layer.msg("请输入用户名！", {icon: 0});
+        layer.tips("请输入用户名！", "#account", {
+            tips: [2, '#FF3300']
+        });
         return false;
     }
     var password = $("#password").val();
     if (password == null || password.length == 0) {
-        layer.msg("请输入密码！", {icon: 0});
+        layer.tips("请输入密码！", "#password", {
+            tips: [2, '#FF3300']
+        });
         return false;
     }
 
     if (password.length < 6) {
-        layer.msg("密码长度不能小于6位！", {icon: 0});
+        layer.tips("密码长度不能小于6位！", "#password", {
+            tips: [2, '#FF3300']
+        });
         return false;
     }
 
