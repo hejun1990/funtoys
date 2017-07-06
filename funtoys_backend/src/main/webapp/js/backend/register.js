@@ -6,9 +6,27 @@ function register() {
         });
         return false;
     }
+
+    var ret = /^[a-zA-Z][a-zA-Z0-9_]{5,20}$/;
+    if (!ret.test(account)) {
+        layer.tips("用户名须由英文字母（A-Z/a-z）、数字（0-9）和下划线（_）组成，以英文字母开头，长度为5-20位。", "#account", {
+            tips: [2, '#FF3300'],
+            time: 6000
+        });
+        return false;
+    }
+
     var password = $("#password").val();
     if (password == null || password.length == 0) {
         layer.tips("请输入密码！", "#password", {
+            tips: [2, '#FF3300']
+        });
+        return false;
+    }
+
+    var randomcode = $("#randomcode").val();
+    if (randomcode == null || randomcode.length == 0) {
+        layer.tips("请输入验证码！", "#randomcode", {
             tips: [2, '#FF3300']
         });
         return false;
