@@ -2,8 +2,14 @@ package com.funtoys.backend.controller;
 
 import com.funtoys.service.domain.generation.AccountInfo;
 import com.funtoys.service.inter.AccountInfoService;
+import com.funtoys.service.utils.CaptchaFactory;
 import com.funtoys.service.utils.MD5;
 import com.funtoys.service.utils.RandomCode;
+import com.github.bingoohuang.patchca.color.RandomColorFactory;
+import com.github.bingoohuang.patchca.custom.ConfigurableCaptchaService;
+import com.github.bingoohuang.patchca.filter.FilterFactory;
+import com.github.bingoohuang.patchca.utils.encoder.EncoderHelper;
+import com.github.bingoohuang.patchca.word.RandomWordFactory;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * Created by hejun on 2017/7/3.
@@ -28,8 +35,21 @@ import java.util.Map;
 public class LoginPageController {
     private static Logger logger = LoggerFactory.getLogger(LoginPageController.class);
 
+    private static ConfigurableCaptchaService cs;
+
+    private static List<FilterFactory> factories;
+
+
     @Autowired
     private AccountInfoService accountInfoService;
+
+    @PostConstruct
+    public void createCaptcha() {
+        cs = new ConfigurableCaptchaService();
+        CaptchaFactory.instanceConfigurableCaptcha(cs);
+        factories = new ArrayList<>();
+        CaptchaFactory.instanceFilterFactory(factories, cs);
+    }
 
     /**
      * 跳转到登录页面
@@ -176,6 +196,42 @@ public class LoginPageController {
         HttpSession session = request.getSession();
         session.removeAttribute("accountInfo");
         return "backend/login";
+    }
+
+    @RequestMapping("/randomcodeimg")
+    public void getRandomCodeImg(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            cs.setFilterFactory(factories.get(0));
+            setResponseHeaders(response);
+            HttpSession session = request.getSession();
+            String token = EncoderHelper.getChallangeAndWriteImage(cs, "png",
+                    response.getOutputStream());
+            session.setAttribute("reg_random_code", token);
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/checkrandomcode", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String checkRandomCode(@RequestParam("randomCode") String randomCode, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String token = (String) session.getAttribute("reg_random_code");
+        if (randomCode.equalsIgnoreCase(token)) {
+            return "right";
+        }
+        return "wrong";
+    }
+
+    private void setResponseHeaders(HttpServletResponse response) {
+        response.setContentType("image/png");
+        response.setHeader("Cache-Control", "no-cache, no-store");
+        response.setHeader("Pragma", "no-cache");
+        long time = System.currentTimeMillis();
+        response.setDateHeader("Last-Modified", time);
+        response.setDateHeader("Date", time);
+        response.setDateHeader("Expires", time);
     }
 
 }

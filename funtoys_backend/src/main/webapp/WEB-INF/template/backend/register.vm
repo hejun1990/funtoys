@@ -11,7 +11,7 @@
     <link href="$!base_url/assets/css/font-awesome.css" rel="stylesheet"/>
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-
+    <link href="$!base_url/css/register.css" rel="stylesheet"/>
 </head>
 <body style="background-color: #E2E2E2;">
 <div class="container">
@@ -21,9 +21,7 @@
         </div>
     </div>
     <div class="row ">
-
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-
             <div class="panel-body">
                 <form role="form">
                     <hr/>
@@ -31,15 +29,17 @@
                     <br/>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-tag"></i></span>
-                        <input type="text" id="account" name="account" class="form-control" placeholder="用户名"/>
+                        <input type="text" id="account" name="account" class="form-control" placeholder="用户名，英文字母（A-Z/a-z）、数字（0-9）和下划线（_）组成"/>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="密码"/>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="密码，长度不少于6位"/>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-qrcode"></i></span>
-                        <input type="text" id="randomcode" name="randomcode" class="form-control" placeholder="验证码"/>
+                        <input type="text" id="randomcode" name="randomcode" class="form-control" style="width: 65%"
+                               placeholder="验证码"/>
+                        <img src="$!base_url/login/randomcodeimg" class="img-random" onclick="resetRandomCode();">
                     </div>
 
                     <a href="javascript:void(0);" class="btn btn-primary" onclick="register();">注册</a>
@@ -47,10 +47,7 @@
                     已有账号 ? <a href="$!base_url/login/page">立即登录 </a> 或 <a href="$!base_url/main/index">首页</a>
                 </form>
             </div>
-
         </div>
-
-
     </div>
 </div>
 

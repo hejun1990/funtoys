@@ -309,6 +309,13 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.github.bingoohuang</groupId>
+                <artifactId>patchca</artifactId>
+                <version>0.0.1</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

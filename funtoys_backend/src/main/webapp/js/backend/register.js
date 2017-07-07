@@ -1,3 +1,10 @@
+// 刷新图片验证码
+function resetRandomCode() {
+    var time_now = new Date().getTime();
+    $(".img-random").attr("src", base_url + "/login/randomcodeimg?date=" + time_now);
+}
+
+// 注册
 function register() {
     var account = $("#account").val();
     if (account == null || account.length == 0) {
@@ -24,24 +31,24 @@ function register() {
         return false;
     }
 
+    if (password.length < 6) {
+        layer.tips("密码长度不应少于6位！", "#password", {
+            tips: [2, '#FF3300']
+        });
+        return false;
+    }
+
     var randomcode = $("#randomcode").val();
     if (randomcode == null || randomcode.length == 0) {
         layer.tips("请输入验证码！", "#randomcode", {
-            tips: [2, '#FF3300']
+            tips: [1, '#FF3300']
         });
         return false;
     }
 
-    if (password.length < 6) {
-        layer.tips("密码长度不能小于6位！", "#password", {
-            tips: [2, '#FF3300']
-        });
-        return false;
-    }
-
-    var checkAccount = true; // 账号是否可以注册
-    var system_error = false;
-
+    var checkAccount = true; // 账号是否可以注册标识
+    var system_error = false; // ajax返回值异常标识
+    // 验证账号是否可以注册
     $.ajaxSettings.async = false; // 设置ajax同步
     $.post(base_url + "/login/checkaccount", {
         account: account,
@@ -62,9 +69,35 @@ function register() {
         layer.msg("系统异常！", {icon: 5});
         return false;
     }
-
     if (!checkAccount) {
         layer.msg("账号已被注册！", {icon: 5});
+        return false;
+    }
+
+    var checkRandoCode = true; // 验证码是否正确标识
+    // 检查验证码是否正确
+    $.ajaxSettings.async = false; // 设置ajax同步
+    $.post(base_url + "/login/checkrandomcode", {
+        randomCode: randomcode
+    }, function (result) {
+        if (result != null) {
+            if (result != "right") {
+                checkRandoCode = false;
+            }
+        } else {
+            system_error = true;
+        }
+    });
+    $.ajaxSettings.async = true; // 设置ajax异步
+
+    if (system_error) {
+        layer.msg("系统异常！", {icon: 5});
+        return false;
+    }
+    if(!checkRandoCode) {
+        layer.tips("验证码不正确！", "#randomcode", {
+            tips: [1, '#FF3300']
+        });
         return false;
     }
 
