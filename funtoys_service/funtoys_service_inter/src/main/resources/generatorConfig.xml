@@ -28,7 +28,7 @@
             <property name="useActualColumnNames" value="true" />
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="persistence/generation" targetProject="D:\DevelopProject\funtoys\funtoys_service\funtoys_service_inter\src\main\resources\">
+        <sqlMapGenerator targetPackage="persistence/generation" targetProject="D:\DevelopProject\funtoys\funtoys_service\funtoys_service_impl\src\main\resources\">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
@@ -37,7 +37,7 @@
         <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成哪些表-->
-        <table tableName="article_keywords" domainObjectName="ArticleKeywords">
+        <table tableName="brand" domainObjectName="Brand">
             <property name="useActualColumnNames" value="false"/>
         </table>
     </context>
