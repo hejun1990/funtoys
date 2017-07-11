@@ -6,10 +6,11 @@
        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
-    <dubbo:application name="funtoys_backend_consumer"  />
+    <dubbo:application name="funtoys_backend_consumer"/>
 
-    <dubbo:registry protocol="zookeeper" address="localhost:2181" />
+    <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
 
     <!-- 生成远程服务代理，可以和本地bean一样使用 -->
-    <dubbo:reference id="accountInfoService" interface="com.funtoys.service.inter.AccountInfoService" />
+    <dubbo:reference id="accountInfoService" interface="com.funtoys.service.inter.AccountInfoService"/>
+    <dubbo:reference id="brandService" interface="com.funtoys.service.inter.BrandService"/>
 </beans>

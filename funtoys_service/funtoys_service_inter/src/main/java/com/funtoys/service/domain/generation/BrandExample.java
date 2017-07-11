@@ -655,6 +655,206 @@ public class BrandExample {
             addCriterion("ch_name not between", value1, value2, "chName");
             return (Criteria) this;
         }
+
+        public Criteria andDescriptionIsNull() {
+            addCriterion("description is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIsNotNull() {
+            addCriterion("description is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionEqualTo(String value) {
+            addCriterion("description =", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotEqualTo(String value) {
+            addCriterion("description <>", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThan(String value) {
+            addCriterion("description >", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("description >=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThan(String value) {
+            addCriterion("description <", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("description <=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLike(String value) {
+            addCriterion("description like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotLike(String value) {
+            addCriterion("description not like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIn(List<String> values) {
+            addCriterion("description in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotIn(List<String> values) {
+            addCriterion("description not in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionBetween(String value1, String value2) {
+            addCriterion("description between", value1, value2, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotBetween(String value1, String value2) {
+            addCriterion("description not between", value1, value2, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagIsNull() {
+            addCriterion("main_flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagIsNotNull() {
+            addCriterion("main_flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagEqualTo(Integer value) {
+            addCriterion("main_flag =", value, "mainFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagNotEqualTo(Integer value) {
+            addCriterion("main_flag <>", value, "mainFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagGreaterThan(Integer value) {
+            addCriterion("main_flag >", value, "mainFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagGreaterThanOrEqualTo(Integer value) {
+            addCriterion("main_flag >=", value, "mainFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagLessThan(Integer value) {
+            addCriterion("main_flag <", value, "mainFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagLessThanOrEqualTo(Integer value) {
+            addCriterion("main_flag <=", value, "mainFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagIn(List<Integer> values) {
+            addCriterion("main_flag in", values, "mainFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagNotIn(List<Integer> values) {
+            addCriterion("main_flag not in", values, "mainFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagBetween(Integer value1, Integer value2) {
+            addCriterion("main_flag between", value1, value2, "mainFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainFlagNotBetween(Integer value1, Integer value2) {
+            addCriterion("main_flag not between", value1, value2, "mainFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalIsNull() {
+            addCriterion("capital is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalIsNotNull() {
+            addCriterion("capital is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalEqualTo(String value) {
+            addCriterion("capital =", value, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalNotEqualTo(String value) {
+            addCriterion("capital <>", value, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalGreaterThan(String value) {
+            addCriterion("capital >", value, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalGreaterThanOrEqualTo(String value) {
+            addCriterion("capital >=", value, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalLessThan(String value) {
+            addCriterion("capital <", value, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalLessThanOrEqualTo(String value) {
+            addCriterion("capital <=", value, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalLike(String value) {
+            addCriterion("capital like", value, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalNotLike(String value) {
+            addCriterion("capital not like", value, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalIn(List<String> values) {
+            addCriterion("capital in", values, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalNotIn(List<String> values) {
+            addCriterion("capital not in", values, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalBetween(String value1, String value2) {
+            addCriterion("capital between", value1, value2, "capital");
+            return (Criteria) this;
+        }
+
+        public Criteria andCapitalNotBetween(String value1, String value2) {
+            addCriterion("capital not between", value1, value2, "capital");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

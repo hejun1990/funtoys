@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.funtoys.service.dao.defined.BrandDao">
+    <resultMap id="BaseResultMap" type="com.funtoys.service.domain.generation.Brand">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP"/>
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP"/>
+        <result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="modified_by" property="modifiedBy" jdbcType="VARCHAR"/>
+        <result column="is_del" property="isDel" jdbcType="INTEGER"/>
+        <result column="en_name" property="enName" jdbcType="VARCHAR"/>
+        <result column="ch_name" property="chName" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="main_flag" property="mainFlag" jdbcType="INTEGER"/>
+        <result column="capital" property="capital" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, gmt_created, gmt_modified, created_by, modified_by, is_del, en_name, ch_name, 
+    description, main_flag, capital
+    </sql>
+
+    <select id="selectPageByCondition" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from brand
+        <where>
+            <if test="record.isDel != null">
+                and is_del = #{record.isDel}
+            </if>
+            <if test="record.id != null">
+                and id = #{record.id}
+            </if>
+            <if test="record.enName != null">
+                and en_name like CONCAT(CONCAT('%', #{record.enName}), '%')
+            </if>
+            <if test="record.chName != null">
+                and ch_name like CONCAT(CONCAT('%', #{record.chName}), '%')
+            </if>
+            <if test="record.capital != null">
+                and capital = #{record.capital}
+            </if>
+            <if test="record.mainFlag != null">
+                and main_flag = #{record.mainFlag}
+            </if>
+            <if test="record.hql != null">
+                and <![CDATA[${record.hql}]]>
+            </if>
+        </where>
+        ORDER BY capital ASC, gmt_created DESC
+        <if test="paging != null and paging.start != null and paging.pageSize != null">
+            limit ${paging.start}, ${paging.pageSize}
+        </if>
+    </select>
+
+    <select id="selectPageByConditionNoOrderBy" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from brand
+        <where>
+            <if test="record.isDel != null">
+                and is_del = #{record.isDel}
+            </if>
+            <if test="record.id != null">
+                and id = #{record.id}
+            </if>
+            <if test="record.enName != null">
+                and en_name like CONCAT(CONCAT('%', #{record.enName}), '%')
+            </if>
+            <if test="record.chName != null">
+                and ch_name like CONCAT(CONCAT('%', #{record.chName}), '%')
+            </if>
+            <if test="record.capital != null">
+                and capital = #{record.capital}
+            </if>
+            <if test="record.mainFlag != null">
+                and main_flag = #{record.mainFlag}
+            </if>
+            <if test="record.hql != null">
+                and <![CDATA[${record.hql}]]>
+            </if>
+        </where>
+        <if test="paging != null and paging.start != null and paging.pageSize != null">
+            limit ${paging.start}, ${paging.pageSize}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) from brand
+        <where>
+            <if test="record.isDel != null">
+                and is_del = #{record.isDel}
+            </if>
+            <if test="record.id != null">
+                and id = #{record.id}
+            </if>
+            <if test="record.enName != null">
+                and en_name like CONCAT(CONCAT('%', #{record.enName}), '%')
+            </if>
+            <if test="record.chName != null">
+                and ch_name like CONCAT(CONCAT('%', #{record.chName}), '%')
+            </if>
+            <if test="record.capital != null">
+                and capital = #{record.capital}
+            </if>
+            <if test="record.mainFlag != null">
+                and main_flag = #{record.mainFlag}
+            </if>
+            <if test="record.hql != null">
+                and <![CDATA[${record.hql}]]>
+            </if>
+        </where>
+    </select>
+
+    <update id="updateByConditionSelective" parameterType="java.util.Map">
+        update brand
+        <set>
+            <trim suffixOverrides=",">
+                <if test="record.gmtCreated != null">
+                    gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+                </if>
+                <if test="record.gmtModified != null">
+                    gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+                </if>
+                <if test="record.createdBy != null">
+                    created_by = #{record.createdBy,jdbcType=VARCHAR},
+                </if>
+                <if test="record.modifiedBy != null">
+                    modified_by = #{record.modifiedBy,jdbcType=VARCHAR},
+                </if>
+                <if test="record.isDel != null">
+                    is_del = #{record.isDel,jdbcType=INTEGER},
+                </if>
+                <if test="record.enName != null">
+                    en_name = #{record.enName,jdbcType=VARCHAR},
+                </if>
+                <if test="record.chName != null">
+                    ch_name = #{record.chName,jdbcType=VARCHAR},
+                </if>
+                <if test="record.description != null">
+                    description = #{record.description,jdbcType=VARCHAR},
+                </if>
+                <if test="record.mainFlag != null">
+                    main_flag = #{record.mainFlag,jdbcType=INTEGER},
+                </if>
+                <if test="record.capital != null">
+                    capital = #{record.capital,jdbcType=VARCHAR},
+                </if>
+            </trim>
+        </set>
+        <if test="example != null">
+            <where>
+                <if test="example.isDel != null">
+                    and is_del = #{example.isDel}
+                </if>
+                <if test="example.id != null">
+                    and id = #{example.id}
+                </if>
+                <if test="example.enName != null">
+                    and en_name like CONCAT(CONCAT('%', #{example.enName}), '%')
+                </if>
+                <if test="example.chName != null">
+                    and ch_name like CONCAT(CONCAT('%', #{example.chName}), '%')
+                </if>
+                <if test="example.capital != null">
+                    and capital = #{example.capital}
+                </if>
+                <if test="example.mainFlag != null">
+                    and main_flag = #{example.mainFlag}
+                </if>
+                <if test="example.hql != null">
+                    and <![CDATA[${example.hql}]]>
+                </if>
+            </where>
+        </if>
+    </update>
+</mapper>

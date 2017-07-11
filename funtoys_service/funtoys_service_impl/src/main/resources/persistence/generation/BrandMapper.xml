@@ -10,6 +10,9 @@
     <result column="is_del" property="isDel" jdbcType="INTEGER" />
     <result column="en_name" property="enName" jdbcType="VARCHAR" />
     <result column="ch_name" property="chName" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="main_flag" property="mainFlag" jdbcType="INTEGER" />
+    <result column="capital" property="capital" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,7 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, gmt_created, gmt_modified, created_by, modified_by, is_del, en_name, ch_name
+    id, gmt_created, gmt_modified, created_by, modified_by, is_del, en_name, ch_name, 
+    description, main_flag, capital
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.funtoys.service.domain.generation.BrandExample" >
     select
@@ -117,10 +121,12 @@
   <insert id="insert" parameterType="com.funtoys.service.domain.generation.Brand" useGeneratedKeys="true" keyProperty="id" >
     insert into brand (id, gmt_created, gmt_modified, 
       created_by, modified_by, is_del, 
-      en_name, ch_name)
+      en_name, ch_name, description, 
+      main_flag, capital)
     values (#{id,jdbcType=INTEGER}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
       #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, 
-      #{enName,jdbcType=VARCHAR}, #{chName,jdbcType=VARCHAR})
+      #{enName,jdbcType=VARCHAR}, #{chName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{mainFlag,jdbcType=INTEGER}, #{capital,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.funtoys.service.domain.generation.Brand" useGeneratedKeys="true" keyProperty="id" >
     insert into brand
@@ -149,6 +155,15 @@
       <if test="chName != null" >
         ch_name,
       </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="mainFlag != null" >
+        main_flag,
+      </if>
+      <if test="capital != null" >
+        capital,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -174,6 +189,15 @@
       </if>
       <if test="chName != null" >
         #{chName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="mainFlag != null" >
+        #{mainFlag,jdbcType=INTEGER},
+      </if>
+      <if test="capital != null" >
+        #{capital,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -229,6 +253,24 @@
         <if test="record.chNameExpression!=null" >
           ch_name = ${record.chNameExpression},
         </if>
+        <if test="record.description!=null and record.descriptionExpression==null" >
+          description = #{record.description,jdbcType=VARCHAR},
+        </if>
+        <if test="record.descriptionExpression!=null" >
+          description = ${record.descriptionExpression},
+        </if>
+        <if test="record.mainFlag!=null and record.mainFlagExpression==null" >
+          main_flag = #{record.mainFlag,jdbcType=INTEGER},
+        </if>
+        <if test="record.mainFlagExpression!=null" >
+          main_flag = ${record.mainFlagExpression},
+        </if>
+        <if test="record.capital!=null and record.capitalExpression==null" >
+          capital = #{record.capital,jdbcType=VARCHAR},
+        </if>
+        <if test="record.capitalExpression!=null" >
+          capital = ${record.capitalExpression},
+        </if>
       </trim>
     </set>
     <if test="_parameter != null" >
@@ -244,7 +286,10 @@
       modified_by = #{record.modifiedBy,jdbcType=VARCHAR},
       is_del = #{record.isDel,jdbcType=INTEGER},
       en_name = #{record.enName,jdbcType=VARCHAR},
-      ch_name = #{record.chName,jdbcType=VARCHAR}
+      ch_name = #{record.chName,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      main_flag = #{record.mainFlag,jdbcType=INTEGER},
+      capital = #{record.capital,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -295,6 +340,24 @@
         <if test="record.chNameExpression!=null" >
           ch_name = ${record.chNameExpression},
         </if>
+        <if test="record.description!=null and record.descriptionExpression==null" >
+          description = #{record.description,jdbcType=VARCHAR},
+        </if>
+        <if test="record.descriptionExpression!=null" >
+          description = ${record.descriptionExpression},
+        </if>
+        <if test="record.mainFlag!=null and record.mainFlagExpression==null" >
+          main_flag = #{record.mainFlag,jdbcType=INTEGER},
+        </if>
+        <if test="record.mainFlagExpression!=null" >
+          main_flag = ${record.mainFlagExpression},
+        </if>
+        <if test="record.capital!=null and record.capitalExpression==null" >
+          capital = #{record.capital,jdbcType=VARCHAR},
+        </if>
+        <if test="record.capitalExpression!=null" >
+          capital = ${record.capitalExpression},
+        </if>
       </trim>
     </set>
     where id = #{record.id,jdbcType=INTEGER}
@@ -307,7 +370,10 @@
       modified_by = #{modifiedBy,jdbcType=VARCHAR},
       is_del = #{isDel,jdbcType=INTEGER},
       en_name = #{enName,jdbcType=VARCHAR},
-      ch_name = #{chName,jdbcType=VARCHAR}
+      ch_name = #{chName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      main_flag = #{mainFlag,jdbcType=INTEGER},
+      capital = #{capital,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
