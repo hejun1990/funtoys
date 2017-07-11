@@ -11,7 +11,7 @@
 
     <artifactId>funtoys_service_inter</artifactId>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>funtoys_service_inter</name>
     <url>http://maven.apache.org</url>
