@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="$!base_url/main/index">Funtoys科技有限公司</a>
+    </div>
+
+    <div class="header-right">
+        <a href="javacript:void(0);" class="btn btn-info" title="消 息"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+        <a href="javacript:void(0);" class="btn btn-primary" title="任 务"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
+        <a href="$!base_url/login/logout" class="btn btn-danger" title="登 出"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+    </div>
+</nav>

@@ -1,7 +1,7 @@
 // 刷新图片验证码
 function resetRandomCode() {
     var time_now = new Date().getTime();
-    $(".img-random").attr("src", base_url + "/login/randomcodeimg?date=" + time_now);
+    $(".img-rounded").attr("src", base_url + "/login/randomcodeimg?date=" + time_now);
 }
 
 // 注册

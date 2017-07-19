@@ -198,6 +198,12 @@ public class LoginPageController {
         return "backend/login";
     }
 
+    /**
+     * 获取随机码图片
+     *
+     * @param request  HttpServletRequest
+     * @param response HttpServletResponse
+     */
     @RequestMapping("/randomcodeimg")
     public void getRandomCodeImg(HttpServletRequest request, HttpServletResponse response) {
         try {
